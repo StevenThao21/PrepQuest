@@ -66,7 +66,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",  # Vite development server
+    # You can add more domains here if needed
+]
+
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -141,5 +149,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOWS_CREDENTIALS = True
+# CORS Settings
+CORS_ALLOW_ALL_ORIGINS = True  # This allows all origins in development
+
+# If you're sending credentials such as cookies or authorization headers, use this:
+CORS_ALLOW_CREDENTIALS = True

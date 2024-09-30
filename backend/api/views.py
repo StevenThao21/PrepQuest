@@ -1,9 +1,10 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response as DRFResponse
-from rest_framework import status
+from rest_framework import status, generics
 from .models import InterviewSession, Question, Response as UserResponse
-from .serializers import InterviewSessionSerializer, QuestionSerializer, ResponseSerializer
-from rest_framework.permissions import AllowAny
+from .serializers import InterviewSessionSerializer, QuestionSerializer, ResponseSerializer, UserSerializer
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from django.contrib.auth.models import User 
 
 class StartInterviewSession(APIView):
     def post(self, request):
@@ -31,3 +32,8 @@ class SubmitResponse(APIView):
             feedback = "Thank you for your response!"  # Placeholder feedback
             return DRFResponse({"response": serializer.data, "feedback": feedback}, status=status.HTTP_201_CREATED)
         return DRFResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class CreateUserView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [AllowAny]
