@@ -12,12 +12,12 @@ class InterviewSession(models.Model):
         return f"{self.user.username} - {self.job_title} interview on {self.start_time}"
 
 class Question(models.Model):
-    content = models.TextField()
-    job_title = models.CharField(max_length=255)
-    difficulty = models.IntegerField()
+    text = models.CharField(max_length=255)  # Define the 'text' field for the question
+    difficulty = models.IntegerField(default=1)  # Define the 'difficulty' field with a default value
 
     def __str__(self):
-        return f"Question for {self.job_title} - Difficulty: {self.difficulty}"
+        return self.text
+
 
 class Response(models.Model):
     interview_session = models.ForeignKey(InterviewSession, on_delete=models.CASCADE)

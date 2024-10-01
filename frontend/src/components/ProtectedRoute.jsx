@@ -5,6 +5,8 @@ import { REFRESH_TOKEN, ACCESS_TOKEN } from "../constants";
 import { useState, useEffect } from "react";
 
 function ProtectedRoute({ children }) {
+    console.log("Access Token on page load:", localStorage.getItem(ACCESS_TOKEN));
+
     const [isAuthorized, setIsAuthorized] = useState(null);
 
     useEffect(() => {

@@ -3,7 +3,6 @@
 Using on my mac set up
 
 Create virutal environment
-python3.11 -m venv /Users/steventhao/PrepQuest/env
 
 Open virtual environment
 source /Users/steventhao/PrepQuest/env/bin/activate
